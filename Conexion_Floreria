@@ -1,0 +1,31 @@
+ <?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "flores";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+//recoger los datos del form 
+$Nombre =$_POST["Nombre"]; 
+$apellido = $_POST["Apellido"]; 
+$email = $_POST["email"]; 
+
+//creamos la sentencia de insert
+
+$sql = "INSERT INTO cliente (firstname, lastname, email)
+VALUES ('$nombre', '$apellido', '$email')";
+
+if ($conn->query($sql) === TRUE) {
+  echo "Nuevo dato insertado ";
+} else {
+  echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+$conn->close();
+?> 
